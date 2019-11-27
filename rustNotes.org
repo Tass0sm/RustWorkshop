@@ -1,0 +1,159 @@
+* Slack
+bit.ly/2rvbOSc
+* Rust
+** println! is a macro.
+*** ! denotes macro.
+** Display formatter
+println!("Hello, {}", "alice");
+** Debug formatter
+println!("Hello, {:?}", "bob");
+** Types are inferred and static.
+** Variables are not variable by default.
+** Have to be made mutable.
+** Think about when a variable should and shouldn't be changed.
+** Built-in Types:
+*** u32, i32
+*** f64 (32 too)
+*** String, &str
+*** bool
+*** tuple (T1, T2, ...)
+*** vectors, slices, arrays
+** if statement
+if condition {
+	statements;
+	expression
+} else if another_condition {
+	statement;
+	expression
+} else {
+	statement;
+	expression
+}
+*** if body evaluates to chosen clause. Acts like a ternary operator.
+** match statement
+match expression {
+    pattern => expression,
+    pattern => {
+        
+    },
+    _ => expression,
+}
+** function statement
+fn name(arg1: Type1, arg2: Type2, ...) -> ReturnType {
+    statement;
+    statement;
+    expression   //implicit return of expression
+}
+
+fn name(arg1: Type1, arg2: Type2, ...) -> ReturnType {
+    return expression;
+}
+** for
+for pattern in expression {
+
+}
+*** expression is a range.
+**** 0..10
+**** 0..=9
+**** vector.iter() (iterator)
+**** &vector (reference) (also some thing as .iter() ?!?!?)
+** we got functionals baby
+** structs
+struct TypeName {
+    member_name: MemberType,
+    ...
+}
+
+let val = TypeName {
+    member_name: MemberType,
+    ...
+};
+
+val.member_name;
+
+** tuple struct
+
+struct TypeName(MemberType, AnotherType);
+
+let val = TypeName(member_value, another_value);
+
+val.0;
+val.1;
+
+** unit structs
+
+struct TypeName;
+
+let val = TypeName;
+
+*** No member values.
+** enum
+
+enum TypeName {
+    Variant One,
+    VariantTwo(Type1),
+    VariantThree { name: Type2},
+}
+
+*** Discriminated Union
+**** Wahh??
+** union
+
+union TypeName {
+    one_field: Type1,
+    two_field: Type2,
+}
+
+let c = TypeName { one_field: value_1 };
+let l = TypeName { another_field: value_2 };
+
+*** Mainly just for low level stuff, apparently.
+** Methods
+
+//Immutable reference
+impl TypeName {
+    fn method_1(&self, arg1: Type1) -> ReturnType {
+        // ...
+    }
+}
+
+//Mutable reference
+impl TypeName {
+    fn method_1(&mut_self, arg1: Type1) -> ReturnType {
+        // ...
+    }
+}
+
+//Take ownership
+impl TypeName {
+    fn method_1(self, arg1: Type1) -> ReturnType {
+        // ...
+    }
+}
+
+calls:
+
+fn example_1(value: &TypeName, arg1: Type1) {
+    value.method_1(arg1);
+}
+
+fn example_2(value: &mut TypeName, arg1: Type1) {
+    value.method_2(arg1);
+}
+
+fn example_3(value: TypeName, arg1: Type1) {
+    value.method_3(arg1);
+}
+
+** Strings
+*** String
+
+From &str to String
+"hello".to_string();
+
+*** &str
+
+From String to &str
+String::new().as_str();
+
+*** strings are UTF8
